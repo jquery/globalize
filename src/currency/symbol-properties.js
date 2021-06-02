@@ -1,8 +1,9 @@
 define([
 	"./supplemental-override",
 	"../number/numbering-system",
-	"../util/regexp/not-s"
-], function( currencySupplementalOverride, numberNumberingSystem, regexpNotS ) {
+	"../util/regexp/not-s",
+	"../util/regexp/not-s-and-z"
+], function( currencySupplementalOverride, numberNumberingSystem, regexpNotS, regexpNotSAndZ ) {
 
 /**
  * symbolProperties( currency, cldr )
@@ -13,7 +14,8 @@ return function( currency, cldr, options ) {
 	var currencySpacing, pattern, symbol, symbolEntries,
 		regexp = {
 			"[:digit:]": /\d/,
-			"[:^S:]": regexpNotS
+			"[:^S:]": regexpNotS,
+			"[[:^S:]&[:^Z:]]": regexpNotSAndZ
 		};
 
 	if ( options.style === "code" ) {
